@@ -398,16 +398,16 @@ public class Register extends javax.swing.JFrame {
             nlab.setText(null);
             nverLab.setText(null);
         }else{
-        String PATTERN="^[0-9]{10,12}$";
+        String PATTERN="^[0-9]{10}$";
         Pattern patt=Pattern.compile(PATTERN);
         Matcher match=patt.matcher(txtPhone.getText());
         if(!match.matches()){
            nverLab.setText(null);
-           nlab.setText(" INVALID PHONE NUMBER!");  
+           nlab.setText("INCORRECTLY FORMATTED");  
         }
         else{
             nlab.setText(null);
-            nverLab.setText(" PHONE NUMBER APPROVED");
+            nverLab.setText("SUCCESSFULLY ADDED");
         }
     }//GEN-LAST:event_txtPhoneKeyReleased
     }
@@ -431,9 +431,9 @@ public class Register extends javax.swing.JFrame {
         }
         if(Password.length() >=8 && hasUpper && hasLower && hasSpecial){
             passlab.setText(null);
-            passverlab.setText("PASSWORD APPROVED");
+            passverlab.setText("SUCCESSFULLY CAPTURED");
         }else{
-            passlab.setText("INVAILD PASSWORD!");
+            passlab.setText("NOT CORRECTLY FORMATTED");
             passverlab.setText(null);
            
         }
@@ -479,7 +479,7 @@ public class Register extends javax.swing.JFrame {
             confirmlab.setText("PASSWORD DO NOT MATCH");
             confirmverLab.setText(null);
         } else{
-            confirmverLab.setText("PASSWORD HAS BEEN COMFIRM");
+            confirmverLab.setText("PASSWORD SUCCESSFULLY");
             confirmlab.setText(null);
         }
         
