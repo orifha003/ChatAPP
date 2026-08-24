@@ -5,7 +5,7 @@
 package com.mycompany.progapp;
 import java.util.regex.*;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 /**
  *
  * @author orifh
@@ -201,13 +201,14 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String User , Pass;
-        User=txtUser.getText();
-        Pass=txtPass.getText();
-        if(User.equals("admin")&& Pass.equals("admin")){
-            JOptionPane.showMessageDialog(null, "username and password matched");}
-            else{
-            JOptionPane.showMessageDialog(null, "username and password do not match");
+       Scanner input = new Scanner(System.in);
+        //checking if the text feild have been filled in 
+        
+        String username= input.nextLine();
+        if (username.isEmpty()){
+            System.out.println( "USERNAME OR PASSWORD INCORROCT, PLEASE TRY AGAIN" );
+        }else{
+        System.out.println("Welcome!!," + username + " It is great to see you.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -219,7 +220,22 @@ public class Login extends javax.swing.JFrame {
             new Register().setVisible(true);
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
+    boolean checkUserName(String userName){
+        boolean hasUnderScore= false;
+        boolean ValidLength=false;
+        for (int i = 0; i < userName.length(); i++) {
+        char c = userName.charAt(i);
+        if (c == '_') {
+            hasUnderScore = true;
+        }
+    }
 
+    if (userName.length() <= 10) {
+        ValidLength = true;
+    }
+
+    return hasUnderScore && ValidLength;
+    }
     private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
         // TODO add your handling code here:
          String username = txtUser.getText();
@@ -230,10 +246,8 @@ public class Login extends javax.swing.JFrame {
             userVerLab.setText(null);
         }else{
             
-        String PATTERN="^[a-zA-Z0-9]{5,10}[_.][0-9]";
-        Pattern patt=Pattern.compile(PATTERN);
-        Matcher match=patt.matcher(txtUser.getText());
-        if(!match.matches()){
+   
+        if(checkUserName(username)){
             userLab.setText("USERNAME NOT FOUND");
             userVerLab.setText(null);
         }

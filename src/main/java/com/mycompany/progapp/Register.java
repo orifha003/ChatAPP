@@ -5,7 +5,8 @@
 package com.mycompany.progapp;
 import java.util.regex.*;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.util.Scanner;
+
 /**
  *
  * @author orifh
@@ -346,12 +347,14 @@ public class Register extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        String  username=txtUserName.getText();
+        Scanner input = new Scanner(System.in);
         //checking if the text feild have been filled in 
+        
+        String username= input.nextLine();
         if (username.isEmpty()){
-            JOptionPane.showMessageDialog(null, "PLEASE FILL IN ALL TEXT FEILD!!" );
+            System.out.println( "USERNAME OR PASSWORD INCORROCT, PLEASE TRY AGAIN" );
         }else{
-        JOptionPane.showMessageDialog(null, "Welcome!!," + username + " It is great to see you.");
+        System.out.println("Welcome!!," + username + " It is great to see you.");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
