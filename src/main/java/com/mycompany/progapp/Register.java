@@ -344,7 +344,7 @@ public class Register extends javax.swing.JFrame {
             new Login().setVisible(true);
         }              
     }//GEN-LAST:event_btnLoginActionPerformed
-
+  
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         Scanner input = new Scanner(System.in);
