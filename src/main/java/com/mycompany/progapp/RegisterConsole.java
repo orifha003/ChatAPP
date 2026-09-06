@@ -60,43 +60,43 @@ public class RegisterConsole {
             }
            
         //display output message 
-    String registerUser(String firstName, String lastName, String username, String password, String cellNumber) {
-        boolean usernameOk = checkUserName(username);
-        boolean passwordOk = checkPasswordComplexity(password);
-        boolean cellOk = checkCellPhoneNumber(cellNumber);
+            String registerUser(String firstName, String lastName, String username, String password, String cellNumber) {
+                boolean usernameOk = checkUserName(username);
+                boolean passwordOk = checkPasswordComplexity(password);
+                boolean cellOk = checkCellPhoneNumber(cellNumber);
 
-        if (!usernameOk) {
-            return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
-        }
-        if (!passwordOk) {
-            return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
-        }
-        if (!cellOk) {
-            return "Cell number is incorrectly formatted or does not contain international code; please correct the number and try again.";
-        }
+                if (!usernameOk) {
+                    return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
+                }
+                if (!passwordOk) {
+                    return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+                }
+                if (!cellOk) {
+                    return "Cell number is incorrectly formatted or does not contain international code; please correct the number and try again.";
+                }
 
         // all checks passed, so store the details for login later
-        storedFirstName = firstName;
-        storedLastName = lastName;
-        storedUsername = username;
-        storedPassword = password;
-        storedCellNumber = cellNumber;
+                storedFirstName = firstName;
+                storedLastName = lastName;
+                storedUsername = username;
+                storedPassword = password;
+                storedCellNumber = cellNumber;
 
-        return "You have been registered successfully.";
-    }
+                return "You have been registered successfully.";
+            }
 
-    boolean loginUser(String username, String password) {
-        if (storedUsername == null) {
-            return false;
+            boolean loginUser(String username, String password) {
+                if (storedUsername == null) {
+                    return false;
+                }
+                return username.equals(storedUsername) && password.equals(storedPassword);
+            }
+
+            String returnLoginStatus(boolean success) {
+                if (success) {
+                    return "Welcome " + storedFirstName + ", " + storedLastName + " it is great to see you again.";
+                } else {
+                    return "Username or password incorrect, please try again.";
+                }
+            }
         }
-        return username.equals(storedUsername) && password.equals(storedPassword);
-    }
-
-    String returnLoginStatus(boolean success) {
-        if (success) {
-            return "Welcome " + storedFirstName + ", " + storedLastName + " it is great to see you again.";
-        } else {
-            return "Username or password incorrect, please try again.";
-        }
-    }
-}
