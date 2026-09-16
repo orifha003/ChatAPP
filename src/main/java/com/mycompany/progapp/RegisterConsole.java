@@ -65,26 +65,21 @@ public class RegisterConsole {
                 boolean passwordOk = checkPasswordComplexity(password);
                 boolean cellOk = checkCellPhoneNumber(cellNumber);
 
-                if (!usernameOk) {
-                    return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
-                }
-                if (!passwordOk) {
-                    return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
-                }
-                if (!cellOk) {
-                    return "Cell number is incorrectly formatted or does not contain international code; please correct the number and try again.";
-                }
+                if (usernameOk && passwordOk && cellOk) {
+                    // all checks passed, so store the details for login later
+                    storedFirstName = firstName;
+                    storedLastName = lastName;
+                    storedUsername = username;
+                    storedPassword = password;
+                    storedCellNumber = cellNumber;
 
-        // all checks passed, so store the details for login later
-                storedFirstName = firstName;
-                storedLastName = lastName;
-                storedUsername = username;
-                storedPassword = password;
-                storedCellNumber = cellNumber;
-
-                return "You have been registered successfully.";
+                    return "You have registered successfully.";
+                } else {
+                    return "Unable to register.";
+                }
             }
-
+            
+            
             boolean loginUser(String username, String password) {
                 if (storedUsername == null) {
                     return false;
