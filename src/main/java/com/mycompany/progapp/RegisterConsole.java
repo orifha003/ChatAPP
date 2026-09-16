@@ -9,16 +9,17 @@ package com.mycompany.progapp;
  *
  * @author orifh
  */
+
 public class RegisterConsole {
 
-    // Declarationof variables
+    //DECLARATION OF VARIABLES 
         String storedUsername;
         String storedPassword;
         String storedCellNumber;
         String storedFirstName;
         String storedLastName;
     
-    //check username requirements
+    //CHECKING USERNAME REQUIREMENTS
         boolean checkUserName(String username) {
             boolean hasUnderscore = false;
             for (int i = 0; i < username.length(); i++) {
@@ -29,7 +30,7 @@ public class RegisterConsole {
             return hasUnderscore && validLength;
     }
         
-    //checking password complexity
+    //CHECKING PASSWORD REQUIREMENTS
         boolean checkPasswordComplexity(String password) {
             boolean hasUpper = false;
             boolean hasLower = false;
@@ -45,7 +46,7 @@ public class RegisterConsole {
         return password.length() >= 8 && hasUpper && hasLower && hasDigit && hasSpecial;
     }
         
-        // check cell phone number requirements 
+        //CHECK CELL NUMBER REQUIREMENTS  
             boolean checkCellPhoneNumber(String number) {
                 boolean startsWithPlus = number.length() > 0 && number.charAt(0) == '+';
                 boolean allDigits = true;
@@ -59,7 +60,7 @@ public class RegisterConsole {
                 return startsWithPlus && allDigits && validLength;
             }
            
-        //display output message 
+        //DISPLAY OUTPUT MESSAGES FOR REGISTRATION 
             String registerUser(String firstName, String lastName, String username, String password, String cellNumber) {
                 boolean usernameOk = checkUserName(username);
                 boolean passwordOk = checkPasswordComplexity(password);
@@ -79,7 +80,7 @@ public class RegisterConsole {
                 }
             }
             
-            
+         //DISPLAY OUTPUT MESSAGES FOR LOGIN 
             boolean loginUser(String username, String password) {
                 if (storedUsername == null) {
                     return false;

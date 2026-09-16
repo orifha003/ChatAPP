@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class ProgAPP {
 
     public static void main(String[] args) {
+        
         //DECLARATION OF VARIABLES 
         Scanner input = new Scanner(System.in);
         RegisterConsole reg = new RegisterConsole();
