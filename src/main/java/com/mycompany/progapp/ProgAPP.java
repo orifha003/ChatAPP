@@ -22,7 +22,7 @@ public class ProgAPP {
 
         boolean running = true;
 
-         // THE MAIN MENU 
+        // THE MAIN MENU 
         while (running) {
             System.out.println("\n***** MENU *****");
             System.out.println("1. Register");
@@ -54,15 +54,15 @@ public class ProgAPP {
     //REGISTRATION INPUT PROCESS 
         static void registerUser(Scanner input, RegisterConsole reg) {
             
-      //PROMT USER TO ENTER FISRT NAME
+    //PROMT USER TO ENTER FISRT NAME
         System.out.println("Enter first name: ");
         String firstName = input.nextLine();
 
-     //PROMPT USER TO ENTER LAST NAME 
+    //PROMPT USER TO ENTER LAST NAME 
         System.out.println("Enter last name: ");
         String lastName = input.nextLine();
 
-     //EXECUTION OF LOOP FOR USERNAME 
+    //EXECUTION OF LOOP FOR USERNAME 
         String username;
         while (true) {
             System.out.println("Enter username: ");
@@ -75,7 +75,7 @@ public class ProgAPP {
             }
         }
 
-      //EXECUTING OF LOOP FOR PASSWORD 
+    //EXECUTING OF LOOP FOR PASSWORD 
         String password;
         while (true) {
             System.out.println("Enter password: ");
@@ -88,7 +88,7 @@ public class ProgAPP {
             }
         }
 
-      //EXECUTION OF LOOP FOR CELLPHONE NUMBER 
+    //EXECUTION OF LOOP FOR CELLPHONE NUMBER 
         String cellNumber;
         while (true) {
             System.out.println("Enter South African cell phone number (e.g. +27123456789): ");
@@ -101,7 +101,7 @@ public class ProgAPP {
             }
         }
 
-      // DIPLAY OUTPUT MESSAGE
+    // DIPLAY OUTPUT MESSAGE
         String result = reg.registerUser(firstName, lastName, username, password, cellNumber);
         System.out.println(result);
     }
