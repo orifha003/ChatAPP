@@ -2,8 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.progapp;
 
+package com.mycompany.progapp;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
@@ -27,7 +27,6 @@ public class MessageTest {
     }
 
     //  message length 
-
     @Test
     public void testMessageLengthSuccess() {
         assertEquals("Message ready to send.", message.checkMessageLength(messageOne));
@@ -41,7 +40,6 @@ public class MessageTest {
     }
 
     //  recipient number 
-
     @Test
     public void testRecipientCorrectlyFormatted() {
         assertEquals("Cell phone number successfully captured.",
@@ -73,7 +71,6 @@ public class MessageTest {
     }
 
     //  message ID
-
     @Test
     public void testMessageIDCreated() {
         String messageID = message.generateMessageID();
@@ -97,7 +94,6 @@ public class MessageTest {
     }
 
     // send, disregard, store 
-
     @Test
     public void testSentMessageSend() {
         assertEquals("Message successfully sent.", message.sentMessage(1));
@@ -119,7 +115,6 @@ public class MessageTest {
     }
 
     //  total messages and message details 
-
     @Test
     public void testTotalMessagesSent() {
         // message 1 is sent, message 2 is discarded, so only one is counted
@@ -143,7 +138,6 @@ public class MessageTest {
     }
 
     // JSON file 
-
     @Test
     public void testStoreMessageWritesJsonFile() throws IOException {
         message.jsonFileName = "test_messages.json";
