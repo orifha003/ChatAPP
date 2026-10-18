@@ -1,2 +1,5 @@
 com\mycompany\progapp\ProgAPP.class
+com\mycompany\progapp\RegisterConsoleTest.class
+com\mycompany\progapp\MessageTest.class
+com\mycompany\progapp\Message.class
 com\mycompany\progapp\RegisterConsole.class
