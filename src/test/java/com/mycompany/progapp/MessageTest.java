@@ -5,6 +5,7 @@
 package com.mycompany.progapp;
 
 
+import com.mycompany.progapp.Message;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
 import java.io.IOException;
