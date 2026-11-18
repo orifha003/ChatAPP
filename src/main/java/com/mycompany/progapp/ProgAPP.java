@@ -3,12 +3,8 @@
  */
 package com.mycompany.progapp;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-
-/**p
- *
- * @author orifh
- */
 
 /**
  * Main class for the ChatApp.
@@ -24,7 +20,7 @@ public class ProgAPP {
 
         // while loop keeps the main menu running until the user chooses Exit
         while (running) {
-            System.out.println("\n**** MENU ****");
+            System.out.println("\n===== MENU =====");
             System.out.println("1. Register");
             System.out.println("2. Login");
             System.out.println("3. Exit");
@@ -38,7 +34,7 @@ public class ProgAPP {
                 case "2":
                     // QuickChat only opens after a successful login
                     if (loginUser(input, registerConsole)) {
-                        quickChat(input);
+                        quickChat(input, registerConsole);
                     }
                     break;
                 case "3":
@@ -129,8 +125,11 @@ public class ProgAPP {
     }
 
     // the QuickChat menu, shown after a successful login
-    static void quickChat(Scanner input) {
-        Message message = new Message();
+    static void quickChat(Scanner input, RegisterConsole registerConsole) {
+        Message message = new Message(registerConsole.storedUsername);
+
+        // fills the stored messages array from the JSON file
+        message.loadStoredMessages();
 
         System.out.println("Welcome to QuickChat.");
 
@@ -144,6 +143,7 @@ public class ProgAPP {
             System.out.println("1) Send Messages");
             System.out.println("2) Show recently sent messages");
             System.out.println("3) Quit");
+            System.out.println("4) Stored Messages");
             System.out.println("Choose an option: ");
             String option = input.nextLine();
 
@@ -166,8 +166,11 @@ public class ProgAPP {
                 case "3":
                     chatting = false;
                     break;
+                case "4":
+                    storedMessagesMenu(input, message);
+                    break;
                 default:
-                    System.out.println("Invalid option, please choose 1, 2, or 3.");
+                    System.out.println("Invalid option, please choose 1, 2, 3, or 4.");
                     break;
             }
         }
@@ -175,6 +178,80 @@ public class ProgAPP {
         System.out.println("\n===== MESSAGES SENT =====");
         System.out.println(message.printMessages());
         System.out.println("Total messages sent: " + message.returnTotalMessages());
+    }
+
+    // the Stored Messages menu: searches and reports that use the arrays
+    static void storedMessagesMenu(Scanner input, Message message) {
+        boolean viewing = true;
+
+        while (viewing) {
+            System.out.println("\n--- Stored Messages ---");
+            System.out.println("1) Display the sender and recipient of all stored messages");
+            System.out.println("2) Display the longest stored message");
+            System.out.println("3) Search for a message ID");
+            System.out.println("4) Search for all messages to a recipient");
+            System.out.println("5) Delete a message using the message hash");
+            System.out.println("6) Display a report of all stored messages");
+            System.out.println("7) Back");
+            System.out.println("Choose an option: ");
+            String option = input.nextLine();
+
+            switch (option) {
+                case "1":
+                    System.out.println(message.displayStoredSenderAndRecipient());
+                    break;
+                case "2":
+                    System.out.println(message.returnLongestStoredMessage());
+                    break;
+                case "3":
+                    searchByIDOption(input, message);
+                    break;
+                case "4":
+                    searchByRecipientOption(input, message);
+                    break;
+                case "5":
+                    deleteByHashOption(input, message);
+                    break;
+                case "6":
+                    System.out.println(message.displayReport(Message.STORED));
+                    break;
+                case "7":
+                    viewing = false;
+                    break;
+                default:
+                    System.out.println("Invalid option, please choose 1 to 7.");
+                    break;
+            }
+        }
+    }
+
+    // asks for a message ID and shows the matching recipient and message
+    static void searchByIDOption(Scanner input, Message message) {
+        System.out.println("Enter the message ID: ");
+        String messageID = input.nextLine();
+        System.out.println("Recipient: " + message.searchRecipientByID(messageID));
+        System.out.println("Message: " + message.searchMessageByID(messageID));
+    }
+
+    // asks for a recipient and shows every message sent or stored for them
+    static void searchByRecipientOption(Scanner input, Message message) {
+        System.out.println("Enter the recipient's cell number: ");
+        String recipient = input.nextLine();
+
+        ArrayList<String> found = message.searchByRecipient(recipient);
+        if (found.isEmpty()) {
+            System.out.println("No messages found for that recipient.");
+        }
+        for (int i = 0; i < found.size(); i++) {
+            System.out.println((i + 1) + ". " + found.get(i));
+        }
+    }
+
+    // asks for a message hash and deletes the matching message
+    static void deleteByHashOption(Scanner input, Message message) {
+        System.out.println("Enter the message hash: ");
+        String messageHash = input.nextLine();
+        System.out.println(message.deleteByMessageHash(messageHash));
     }
 
     // keeps asking until the recipient number is valid
@@ -241,6 +318,7 @@ public class ProgAPP {
             System.out.println("Recipient: " + recipient);
             System.out.println("Message: " + text);
         } else if (choice.equals("2")) {
+            message.addDisregardedMessage(messageID, messageHash, recipient, text);
             String zero = input.nextLine();
             if (zero.trim().equals("0")) {
                 System.out.println("Message deleted.");
